@@ -1,7 +1,6 @@
 package cn.zhongkunming.sequence.config;
 
 import cn.zhongkunming.sequence.core.pool.ClientConnect;
-import cn.zhongkunming.sequence.core.pool.ClientConnectRedisFactory;
 import cn.zhongkunming.sequence.core.pool.Pooled;
 import org.apache.commons.pool2.PooledObjectFactory;
 import org.apache.commons.pool2.impl.GenericObjectPool;
@@ -16,12 +15,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConditionalOnBean(Pooled.class)
 public class ClientPoolAutoConfiguration {
-
-    @Bean
-    @ConditionalOnBean(RedisProperties.class)
-    public PooledObjectFactory<ClientConnect> factory(RedisProperties properties){
-        return new ClientConnectRedisFactory(properties);
-    }
 
     @Bean
     public GenericObjectPool<ClientConnect> pool(PooledObjectFactory<ClientConnect> factory) {

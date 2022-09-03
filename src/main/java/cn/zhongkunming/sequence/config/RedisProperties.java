@@ -1,11 +1,14 @@
 package cn.zhongkunming.sequence.config;
 
+import cn.zhongkunming.sequence.core.pool.ClientConnectRedisFactory;
 import cn.zhongkunming.sequence.core.pool.Pooled;
 import io.lettuce.core.RedisClient;
 import io.lettuce.core.api.StatefulRedisConnection;
 import lombok.Data;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -35,4 +38,9 @@ public class RedisProperties implements Pooled {
         return RedisClient.create("redis://127.0.0.1").connect();
     }
 
+    @Bean
+    @ConditionalOnBean(RedisProperties.class)
+    public ClientConnectRedisFactory factory(RedisProperties properties) {
+        return new ClientConnectRedisFactory(properties);
+    }
 }

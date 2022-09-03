@@ -1,5 +1,5 @@
 sequence:
-  type: redis
+  type: zookeeper
 
 
 

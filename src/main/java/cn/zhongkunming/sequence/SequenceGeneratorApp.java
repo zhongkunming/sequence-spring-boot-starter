@@ -14,7 +14,7 @@ import org.springframework.context.ApplicationContextAware;
 @SpringBootApplication
 public class SequenceGeneratorApp implements ApplicationContextAware {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         SpringApplication.run(SequenceGeneratorApp.class, args);
     }
 
