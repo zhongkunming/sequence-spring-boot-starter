@@ -5,4 +5,6 @@ package cn.zhongkunming.sequence.core;
  */
 public abstract class AbstractSequenceGenerator implements SequenceGenerator {
 
+
+
 }

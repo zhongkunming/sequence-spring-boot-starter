@@ -8,7 +8,6 @@ import java.util.UUID;
 public class UuidGenerator extends AbstractSequenceGenerator {
     @Override
     public String generate() {
-        UUID uuid = UUID.randomUUID();
-        return uuid.toString().replaceAll("-", "");
+        return UUID.randomUUID().toString().replaceAll("-", "");
     }
 }

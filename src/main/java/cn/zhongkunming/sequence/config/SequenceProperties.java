@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * @author zhongkunming
  */
 @Configuration
-@ConfigurationProperties(prefix = SequenceProperties.SEQUENCE_PREFIX)
+@ConfigurationProperties(prefix = SequenceProperties.PREFIX)
 @Data
 public class SequenceProperties {
 
@@ -21,11 +21,10 @@ public class SequenceProperties {
     private GeneratorType type;
 
 
-    protected final static String SEQUENCE_PREFIX = "sequence";
+    public final static String PREFIX = "sequence";
+    public final static String TYPE_PREFIX = "sequence.type";
     public final static String UUID = "uuid";
-
     public final static String REDIS = "redis";
-
     @Getter
     public enum GeneratorType {
         UUID(SequenceProperties.UUID),

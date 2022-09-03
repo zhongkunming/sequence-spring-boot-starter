@@ -14,13 +14,13 @@ import org.springframework.context.ApplicationContextAware;
 @SpringBootApplication
 public class SequenceGeneratorApp implements ApplicationContextAware {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         SpringApplication.run(SequenceGeneratorApp.class, args);
     }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         System.out.println(applicationContext.getBean(SequenceGenerator.class).generate());
-        System.out.println(applicationContext.getBean(SequenceProperties.class));
+        System.out.println(applicationContext.getBean(SequenceProperties.class).getType().name().toLowerCase());
     }
 }
