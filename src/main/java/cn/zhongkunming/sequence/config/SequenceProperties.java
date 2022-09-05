@@ -22,10 +22,9 @@ public class SequenceProperties {
 
 
     public final static String PREFIX = "sequence";
-    public final static String TYPE_PREFIX = "sequence.type";
+    public final static String TYPE_PREFIX = "type";
     public final static String UUID = "uuid";
     public final static String REDIS = "redis";
-
     public final static String ZOOKEEPER = "zookeeper";
 
     @Getter

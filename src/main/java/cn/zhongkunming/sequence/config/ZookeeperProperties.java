@@ -1,8 +1,10 @@
 package cn.zhongkunming.sequence.config;
 
+import cn.zhongkunming.sequence.core.pool.ClientConnect;
 import cn.zhongkunming.sequence.core.pool.ClientConnectZookeeperFactory;
 import cn.zhongkunming.sequence.core.pool.Pooled;
 import lombok.Data;
+import org.apache.commons.pool2.PooledObjectFactory;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.RetryNTimes;
@@ -19,7 +21,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Data
 @Configuration
-@ConditionalOnProperty(value = SequenceProperties.TYPE_PREFIX, havingValue = SequenceProperties.ZOOKEEPER)
+@ConditionalOnProperty(prefix = SequenceProperties.PREFIX, name = SequenceProperties.TYPE_PREFIX, havingValue = SequenceProperties.ZOOKEEPER)
 @ConfigurationProperties(prefix = ZookeeperProperties.PREFIX)
 public class ZookeeperProperties implements Pooled {
 
@@ -32,8 +34,7 @@ public class ZookeeperProperties implements Pooled {
     }
 
     @Bean
-    @ConditionalOnBean(ZookeeperProperties.class)
-    public ClientConnectZookeeperFactory factory(ZookeeperProperties properties) {
+    public PooledObjectFactory<ClientConnect> factory(ZookeeperProperties properties) {
         return new ClientConnectZookeeperFactory(properties);
     }
 }

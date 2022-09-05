@@ -22,6 +22,8 @@ public class GeneratorAutoConfiguration {
         return new UuidGenerator();
     }
 
+    // 默认池化
+    // todo 增加非池化的解决方案
     @Bean
     @ConditionalOnBean(GenericObjectPool.class)
     public SequenceGenerator sequenceGenerator(GenericObjectPool<ClientConnect> pool, SequenceProperties properties) {
@@ -33,7 +35,6 @@ public class GeneratorAutoConfiguration {
             default:
                 throw new RuntimeException("");
         }
-
     }
 
 }
