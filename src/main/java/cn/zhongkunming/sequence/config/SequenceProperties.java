@@ -26,12 +26,14 @@ public class SequenceProperties {
     public final static String UUID = "uuid";
     public final static String REDIS = "redis";
     public final static String ZOOKEEPER = "zookeeper";
+    public final static String MYSQL = "mysql";
 
     @Getter
     public enum GeneratorType {
         UUID(SequenceProperties.UUID),
         REDIS(SequenceProperties.REDIS),
         ZOOKEEPER(SequenceProperties.ZOOKEEPER),
+        MYSQL(SequenceProperties.MYSQL),
         ;
         private final String name;
 

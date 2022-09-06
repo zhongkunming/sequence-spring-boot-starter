@@ -18,15 +18,26 @@ import org.springframework.context.annotation.Configuration;
 // todo 池化标识
 @ConditionalOnBean(Pooled.class)
 public class ClientPoolAutoConfiguration {
-
-
-
-
-
     @Bean
     public GenericObjectPool<ClientConnect> pool(PooledObjectFactory<ClientConnect> factory) {
         GenericObjectPoolConfig<ClientConnect> config = new GenericObjectPoolConfig<>();
         config.setJmxEnabled(false);
         return new GenericObjectPool<>(factory, config);
+    }
+
+    static class Redis {
+        @Bean
+        @ConditionalOnBean(RedisProperties.class)
+        public PooledObjectFactory<ClientConnect> factory(RedisProperties properties) {
+            return new ClientConnectRedisFactory(properties);
+        }
+    }
+
+    static class Zookeeper {
+        @Bean
+        @ConditionalOnBean(ZookeeperProperties.class)
+        public PooledObjectFactory<ClientConnect> factory(ZookeeperProperties properties) {
+            return new ClientConnectZookeeperFactory(properties);
+        }
     }
 }

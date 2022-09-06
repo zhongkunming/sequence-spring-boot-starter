@@ -1,7 +1,6 @@
 package cn.zhongkunming.sequence;
 
 import cn.zhongkunming.sequence.config.SequenceProperties;
-import cn.zhongkunming.sequence.config.ZookeeperProperties;
 import cn.zhongkunming.sequence.core.SequenceGenerator;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.SpringApplication;
@@ -25,4 +24,6 @@ public class SequenceGeneratorApp implements ApplicationContextAware {
         System.out.println(applicationContext.getBean(SequenceGenerator.class).generate());
         System.out.println(applicationContext.getBean(SequenceProperties.class).getType().name().toLowerCase());
     }
+
+
 }

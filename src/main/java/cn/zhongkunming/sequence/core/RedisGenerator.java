@@ -16,11 +16,13 @@ public class RedisGenerator extends AbstractSequenceGenerator {
 
     @Override
     public String generate() {
+        ClientConnect connect = null;
         try {
-            ClientConnect connect = pool.borrowObject();
+            connect = pool.borrowObject();
             System.out.println(connect);
             return connect.getValue("testKey");
         } catch (Exception e) {
+            pool.returnObject(connect);
             throw new RuntimeException(e);
         }
     }
